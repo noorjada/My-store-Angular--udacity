@@ -1,0 +1,16 @@
+<div class="cart-item-row">
+    <a [routerLink]="['/products', item.product.id]" class="cart-item-image-link">
+        <img [src]="item.product.url" [alt]="item.product.name" class="cart-item-image" />
+    </a>
+    <div class="cart-item-info">
+        <a [routerLink]="['/products', item.product.id]" class="cart-item-name">{{ item.product.name }}</a>
+        <p class="cart-item-price">{{ item.product.price | currency }}</p>
+    </div>
+    <div class="cart-item-quantity">
+        <select [ngModel]="item.quantity" (ngModelChange)="onQuantityChange($event)">
+            <option *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]" [value]="n">{{ n }}</option>
+        </select>
+    </div>
+    <p class="cart-item-subtotal">{{ item.product.price * item.quantity | currency }}</p>
+    <button class="btn-remove" (click)="onRemove()" title="Remove item">✕</button>
+</div>

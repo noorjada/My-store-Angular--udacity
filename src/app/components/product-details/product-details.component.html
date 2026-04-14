@@ -1,0 +1,22 @@
+<div class="details-page" *ngIf="product">
+    <a routerLink="/" class="back-link">← Back to Products</a>
+    <div class="details-container">
+        <div class="details-image-wrap">
+            <img [src]="product.url" [alt]="product.name" class="details-image" />
+        </div>
+        <div class="details-info">
+            <h1 class="details-name">{{ product.name }}</h1>
+            <p class="details-price">{{ product.price | currency }}</p>
+            <p class="details-description">{{ product.description }}</p>
+            <div class="details-actions">
+                <div class="quantity-selector">
+                    <label for="detail-qty">Quantity:</label>
+                    <select id="detail-qty" [ngModel]="quantity" (ngModelChange)="onQuantityChange($event)">
+                        <option *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]" [value]="n">{{ n }}</option>
+                    </select>
+                </div>
+                <button class="btn-add" (click)="addToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>

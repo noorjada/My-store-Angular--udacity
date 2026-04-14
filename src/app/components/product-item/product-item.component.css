@@ -1,0 +1,103 @@
+.product-card {
+    background: rgba(30, 30, 55, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+}
+
+.product-image-link {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 1.25rem;
+}
+
+.product-name {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    display: block;
+    margin-bottom: 0.4rem;
+    transition: color 0.2s;
+}
+
+.product-name:hover {
+    color: #a78bfa;
+}
+
+.product-price {
+    color: #a78bfa;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+}
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.quantity-selector label {
+    color: #a0a0b8;
+    font-size: 0.85rem;
+}
+
+.quantity-selector select {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-add {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: opacity 0.25s ease, transform 0.2s ease;
+}
+
+.btn-add:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+.btn-add:active {
+    transform: scale(0.97);
+}

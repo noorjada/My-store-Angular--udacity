@@ -1,0 +1,52 @@
+<div class="checkout-page">
+    <h1 class="checkout-title">Checkout</h1>
+
+    <form class="checkout-form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" type="text" placeholder="John Doe" [(ngModel)]="fullName" name="fullName"
+                [class.invalid]="submitted && !nameValid" />
+            <p class="error" *ngIf="submitted && !nameValid">
+                Name must be at least 3 characters
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input id="address" type="text" placeholder="123 Main Street, City, State" [(ngModel)]="address"
+                name="address" [class.invalid]="submitted && !addressValid" />
+            <p class="error" *ngIf="submitted && !addressValid">
+                Address must be at least 6 characters
+            </p>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="cardNumber">Credit Card Number</label>
+                <input id="cardNumber" type="text" placeholder="1234 5678 9012 3456" [(ngModel)]="cardNumber"
+                    name="cardNumber" maxlength="19" [class.invalid]="submitted && !cardValid" />
+                <p class="error" *ngIf="submitted && !cardValid">
+                    Enter a valid 16-digit card number
+                </p>
+            </div>
+
+            <div class="form-group cvv-group">
+                <label for="cvv">CVV</label>
+                <input id="cvv" type="text" placeholder="123" [(ngModel)]="cvv" name="cvv" maxlength="4"
+                    [class.invalid]="submitted && !cvvValid" />
+                <p class="error" *ngIf="submitted && !cvvValid">
+                    Enter a valid CVV
+                </p>
+            </div>
+        </div>
+
+        <div class="form-total">
+            <span>Order Total:</span>
+            <span class="total-amount">{{ total | currency }}</span>
+        </div>
+
+        <button type="submit" class="btn-submit">
+            Place Order
+        </button>
+    </form>
+</div>

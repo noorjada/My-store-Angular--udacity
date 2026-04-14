@@ -1,0 +1,121 @@
+.details-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.back-link {
+    color: #a78bfa;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #c4b5fd;
+}
+
+.details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+    background: rgba(30, 30, 55, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.details-image-wrap {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.details-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-info {
+    padding: 2rem 2rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.details-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.details-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #a78bfa;
+    margin-bottom: 1.2rem;
+}
+
+.details-description {
+    color: #b0b0c8;
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.details-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-selector label {
+    color: #a0a0b8;
+    font-size: 0.9rem;
+}
+
+.quantity-selector select {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.btn-add {
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.25s ease, transform 0.2s ease;
+}
+
+.btn-add:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .details-container {
+        grid-template-columns: 1fr;
+    }
+
+    .details-info {
+        padding: 1.5rem;
+    }
+}

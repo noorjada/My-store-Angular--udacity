@@ -1,0 +1,123 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthResponse, User } from '../models/user';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private apiUrl = 'http://localhost:3000';
+  private currentUserSubject = new BehaviorSubject<User | null>(this.getUserFromLocalStorage());
+  public currentUser$ = this.currentUserSubject.asObservable();
+
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isTokenValid());
+  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+
+  constructor(private http: HttpClient) {
+    if (!this.isTokenValid()) {
+      this.logout();
+    }
+  }
+
+  register(email: string, firstName: string, lastName: string, password: string): Observable<AuthResponse> {
+    return this.http.post<any>(`${this.apiUrl}/users`, {
+      email,
+      firstName,
+      lastName,
+      password
+    }).pipe(
+      map(response => {
+        if (response && response.token) {
+          const authResponse: AuthResponse = {
+            token: response.token,
+            user: {
+              id: response.user?.id || response.id,
+              email: response.user?.email || email,
+              firstName: response.user?.firstName || response.user?.first_name || firstName,
+              lastName: response.user?.lastName || response.user?.last_name || lastName,
+              isAdmin: response.user?.is_admin || false,
+              createdAt: new Date()
+            }
+          };
+          this.setCurrentUser(authResponse);
+          return authResponse;
+        }
+        throw new Error('No token in response');
+      })
+    );
+  }
+
+  login(email: string, password: string): Observable<AuthResponse> {
+    return this.http.post<any>(`${this.apiUrl}/users/authenticate`, {
+      email,
+      password
+    }).pipe(
+      map(response => {
+        if (response && response.token) {
+          const authResponse: AuthResponse = {
+            token: response.token,
+            user: {
+              id: response.user?.id || response.id,
+              email: response.user?.email || email,
+              firstName: response.user?.firstName || response.user?.first_name || response.firstName,
+              lastName: response.user?.lastName || response.user?.last_name || response.lastName,
+              isAdmin: response.user?.is_admin || false,
+              createdAt: new Date()
+            }
+          };
+          this.setCurrentUser(authResponse);
+          return authResponse;
+        }
+        throw new Error('No token in response');
+      })
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('current_user');
+    this.currentUserSubject.next(null);
+    this.isAuthenticatedSubject.next(false);
+  }
+
+  getCurrentUser(): User | null {
+    return this.currentUserSubject.value;
+  }
+
+  isAuthenticated(): boolean {
+    return this.isAuthenticatedSubject.value;
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('auth_token');
+  }
+
+  private setCurrentUser(authResponse: AuthResponse): void {
+    const { token, user } = authResponse;
+    localStorage.setItem('auth_token', token);
+    localStorage.setItem('current_user', JSON.stringify(user));
+    this.currentUserSubject.next(user);
+    this.isAuthenticatedSubject.next(true);
+  }
+
+  private getUserFromLocalStorage(): User | null {
+    const userJson = localStorage.getItem('current_user');
+    return userJson ? JSON.parse(userJson) : null;
+  }
+
+  private isTokenValid(): boolean {
+    const token = localStorage.getItem('auth_token');
+    return !!token;
+  }
+
+  private generateToken(): string {
+    return 'token_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+  }
+
+  private getAllUsers(): User[] {
+    const usersJson = localStorage.getItem('all_users');
+    return usersJson ? JSON.parse(usersJson) : [];
+  }
+}

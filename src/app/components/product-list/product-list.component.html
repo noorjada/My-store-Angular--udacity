@@ -1,0 +1,10 @@
+<div class="product-list-page">
+    <div class="page-header">
+        <h1>Our Products</h1>
+        <p class="subtitle">Discover premium gear curated just for you</p>
+    </div>
+    <div class="product-grid">
+        <app-product-item *ngFor="let product of products" [product]="product"
+            (addToCart)="handleAddToCart($event)"></app-product-item>
+    </div>
+</div>

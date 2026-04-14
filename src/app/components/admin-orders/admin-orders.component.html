@@ -1,0 +1,26 @@
+<div class="orders-container">
+    <h2>All Orders</h2>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>User ID</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{ order.id }}</td>
+                <td>{{ order.user_id }}</td>
+                <td>
+                    <span class="status-badge"
+                        [ngClass]="{'active': order.status === 'active', 'complete': order.status === 'complete'}">{{
+                        order.status }}</span>
+                </td>
+            </tr>
+            <tr *ngIf="orders.length === 0">
+                <td colspan="3" class="text-center">No orders found.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

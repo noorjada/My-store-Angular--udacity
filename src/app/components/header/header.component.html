@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <a routerLink="/" class="logo">
+    <span class="logo-icon">🛍️</span>
+    <span class="logo-text">MyStore</span>
+  </a>
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Products</a>
+
+    <div class="user-section" *ngIf="isAuthenticated">
+      <span class="user-greeting">👤 {{ currentUser?.firstName }}</span>
+      <a *ngIf="currentUser?.isAdmin" routerLink="/admin" routerLinkActive="active" class="nav-link admin-link">Admin
+        Panel</a>
+    </div>
+
+    <a routerLink="/cart" routerLinkActive="active" class="cart-link" *ngIf="isAuthenticated">
+      🛒 Cart
+      <span class="badge" *ngIf="itemCount > 0">{{ itemCount }}</span>
+    </a>
+
+    <div class="auth-links" *ngIf="!isAuthenticated">
+      <a routerLink="/login" class="login-btn">Login</a>
+      <a routerLink="/register" class="register-btn">Register</a>
+    </div>
+
+    <button class="logout-btn" *ngIf="isAuthenticated" (click)="logout()">
+      Logout
+    </button>
+  </div>
+</nav>

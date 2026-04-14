@@ -1,0 +1,119 @@
+.cart-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.cart-title {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #e0e0ff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: #8888a8;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.4;
+}
+
+.empty-cart p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-shop {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: opacity 0.25s;
+}
+
+.btn-shop:hover {
+    opacity: 0.9;
+}
+
+.cart-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.summary-card {
+    background: rgba(30, 30, 55, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 90px;
+}
+
+.summary-card h2 {
+    color: #fff;
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    color: #b0b0c8;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.summary-row.total {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.btn-checkout {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: opacity 0.25s, transform 0.2s;
+}
+
+.btn-checkout:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    .cart-content {
+        grid-template-columns: 1fr;
+    }
+}
